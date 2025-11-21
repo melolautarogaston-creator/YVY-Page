@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YvY Ludica | Juegos de Mesa y Cartas</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Lato', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        logo: ['Fredoka', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#1c1917', // Stone 900
+                            paper: '#f5f5f4',
+                            green: '#9CB979', // Verde Logo Original
+                            wood: '#78350f',
+                            tipico: '#1e4d2b',
+                        }
+                    },
+                    backgroundImage: {
+                        'paper-texture': "url('https://www.transparenttextures.com/patterns/cream-paper.png')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .glass-nav {
+            background: rgba(28, 25, 23, 0.95);
+            backdrop-filter: blur(8px);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px) rotate(1deg);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo-text-glow {
+            text-shadow: 0 0 15px rgba(156, 185, 121, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-stone-300 antialiased selection:bg-brand-green selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav border-b border-stone-800 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer group" onclick="window.scrollTo(0,0)">
+                    <div class="flex flex-col items-start leading-none logo-text-glow transition-transform group-hover:scale-105">
+                        <span class="font-logo font-semibold text-3xl text-brand-green tracking-wide" style="line-height: 0.8;">YvY</span>
+                        <span class="font-logo font-normal text-xl text-brand-green lowercase tracking-wider pl-1">ludica</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-stone-300 hover:text-brand-green transition-colors text-sm font-bold uppercase tracking-widest">Inicio</a>
+                    <a href="#catalog" class="text-stone-300 hover:text-brand-green transition-colors text-sm font-bold uppercase tracking-widest">Catálogo</a>
+                    <a href="#services" class="text-stone-300 hover:text-brand-green transition-colors text-sm font-bold uppercase tracking-widest">Editorial</a>
+                    <a href="#contact" class="bg-brand-green hover:bg-green-600 text-white px-6 py-2 rounded-full font-bold transition-all transform hover:rotate-2 shadow-lg shadow-green-900/50">Contacto</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-brand-green focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-stone-900 border-b border-stone-800 absolute w-full">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#home" class="block px-3 py-2 text-white hover:text-brand-green">Inicio</a>
+                <a href="#catalog" class="block px-3 py-2 text-white hover:text-brand-green">Catálogo</a>
+                <a href="#services" class="block px-3 py-2 text-white hover:text-brand-green">Editorial</a>
+                <a href="#contact" class="block px-3 py-2 mt-4 text-center bg-brand-green rounded text-white font-bold">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1610890716271-e7466ac543bc?q=80&w=2070&auto=format&fit=crop" alt="Board Games Table" class="w-full h-full object-cover opacity-30 grayscale hover:grayscale-0 transition-all duration-[20s] scale-110">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/70 to-transparent"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-10">
+            <!-- BADGE ACTUALIZADO -->
+            <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full border border-brand-green/30 bg-brand-green/10 backdrop-blur-sm animate-pulse-slow">
+                <i class="fa-solid fa-star text-brand-green"></i>
+                <span class="text-brand-green font-bold text-sm tracking-widest uppercase">Nuevo Lanzamiento: <span class="text-white">TIPICO</span></span>
+            </div>
+            
+            <h1 class="font-serif text-5xl md:text-7xl font-black text-stone-100 mb-8 leading-tight">
+                DISEÑAMOS MOMENTOS <br>
+                <span class="text-brand-green italic">INOLVIDABLES</span>
+            </h1>
+            
+            <p class="text-xl text-stone-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                Creamos juegos de mesa, cartas y experiencias lúdicas que conectan personas. Desde la idea en una servilleta hasta la caja en tu estantería.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#catalog" class="px-8 py-4 bg-brand-green text-white rounded-lg font-bold text-lg hover:bg-green-700 transition-all transform hover:-translate-y-1 shadow-lg shadow-green-900/50 flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-chess-board"></i> Ver Juegos
+                </a>
+                <a href="#services" class="px-8 py-4 bg-transparent border-2 border-stone-600 text-stone-300 hover:border-stone-400 hover:text-white rounded-lg font-bold text-lg transition-all flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-pencil"></i> Servicios Editorial
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog / Portfolio Section -->
+    <section id="catalog" class="py-24 bg-stone-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-section opacity-0 transition-opacity duration-1000">
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-white mb-4">Nuestro <span class="text-brand-green">Catálogo</span></h2>
+                <div class="flex justify-center gap-2 text-brand-green opacity-50 mb-4 text-xl">
+                    <i class="fa-solid fa-diamond"></i>
+                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-spade"></i>
+                    <i class="fa-solid fa-club"></i>
+                </div>
+                <p class="text-stone-400 max-w-2xl mx-auto">Proyectos propios y colaboraciones que ya están rodando dados en mesas de todo el mundo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                
+                <!-- Card 1: TIPICO (Posición 1) -->
+                <div class="group bg-stone-800 rounded-xl overflow-hidden shadow-xl border border-stone-700 card-hover transition-all duration-300 fade-in-section opacity-0">
+                    <div class="relative h-72 overflow-hidden bg-stone-900">
+                        <!-- Imagen Genérica de Cartas de Alta Calidad para la vista previa -->
+                        <img src="https://images.unsplash.com/photo-1605429523419-d828c463e5a9?q=80&w=2070&auto=format&fit=crop" 
+                             alt="TIPICO Card Game" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-stone-900 to-transparent h-20"></div>
+                        <!-- Badge indicating NEW and TYPE -->
+                        <div class="absolute top-4 right-4 bg-brand-green text-white text-xs font-bold px-3 py-1 rounded shadow-lg uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-star"></i> Nuevo
+                        </div>
+                    </div>
+                    <div class="p-8 relative">
+                        <div class="absolute -top-6 right-8 bg-white rounded-full w-12 h-12 flex items-center justify-center text-brand-dark font-bold shadow-lg group-hover:scale-110 transition-transform border-2 border-brand-green">
+                            <i class="fa-solid fa-layer-group text-xl"></i>
+                        </div>
+                        <!-- Title Updated -->
+                        <h3 class="font-serif text-3xl text-brand-green font-black mb-2 tracking-wide">TIPICO</h3>
+                        <p class="text-stone-300 font-bold text-xs uppercase mb-2 tracking-widest">Juego de Cartas <span class="text-brand-green px-1">•</span> Sin Apuntes</p>
+                        <p class="text-stone-400 text-sm mb-6 leading-relaxed">
+                            El juego de cartas definitivo para tus reuniones. Rápido, impredecible y lleno de tradición. Olvídate de anotar, solo juega y gana.
+                        </p>
+                        <div class="flex items-center gap-4 text-stone-500 text-xs font-bold uppercase tracking-wide border-t border-stone-700 pt-4">
+                            <span><i class="fa-solid fa-users mr-1"></i> 3-8 Jugadores</span>
+                            <span><i class="fa-solid fa-clock mr-1"></i> 20 min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Strategy Game -->
+                <div class="group bg-stone-800 rounded-xl overflow-hidden shadow-xl border border-stone-700 card-hover transition-all duration-300 fade-in-section opacity-0" style="transition-delay: 100ms;">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1632501641765-e568d28b0015?q=80&w=1974&auto=format&fit=crop" alt="Strategy Board Game" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0">
+                        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-stone-900 to-transparent h-20"></div>
+                        <div class="absolute top-4 right-4 bg-brand-wood text-white text-xs font-bold px-3 py-1 rounded shadow-lg uppercase tracking-wider">Eurogame</div>
+                    </div>
+                    <div class="p-8 relative">
+                        <div class="absolute -top-6 right-8 bg-brand-green rounded-full w-12 h-12 flex items-center justify-center text-stone-900 font-bold shadow-lg group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-chess-rook text-xl"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl text-white font-bold mb-2">Reinos de Madera</h3>
+                        <p class="text-stone-400 text-sm mb-6 leading-relaxed">Un juego de gestión de recursos y colocación de trabajadores ambientado en un bosque encantado. Construye, recolecta y conquista.</p>
+                        <div class="flex items-center gap-4 text-stone-500 text-xs font-bold uppercase tracking-wide border-t border-stone-700 pt-4">
+                            <span><i class="fa-solid fa-users mr-1"></i> 2-4 Jugadores</span>
+                            <span><i class="fa-solid fa-clock mr-1"></i> 60-90 min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Party Game -->
+                <div class="group bg-stone-800 rounded-xl overflow-hidden shadow-xl border border-stone-700 card-hover transition-all duration-300 fade-in-section opacity-0" style="transition-delay: 200ms;">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1566694271453-390536dd1f0d?q=80&w=2070&auto=format&fit=crop" alt="Dice Game" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0">
+                        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-stone-900 to-transparent h-20"></div>
+                        <div class="absolute top-4 right-4 bg-pink-600 text-white text-xs font-bold px-3 py-1 rounded shadow-lg uppercase tracking-wider">Party Game</div>
+                    </div>
+                    <div class="p-8 relative">
+                        <div class="absolute -top-6 right-8 bg-brand-green rounded-full w-12 h-12 flex items-center justify-center text-stone-900 font-bold shadow-lg group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-masks-theater text-xl"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl text-white font-bold mb-2">¡Culpable!</h3>
+                        <p class="text-stone-400 text-sm mb-6 leading-relaxed">Un juego de roles ocultos, mentiras y deducción social. ¿Quién se comió la última porción de pizza? Descúbrelo.</p>
+                        <div class="flex items-center gap-4 text-stone-500 text-xs font-bold uppercase tracking-wide border-t border-stone-700 pt-4">
+                            <span><i class="fa-solid fa-users mr-1"></i> 5-10 Jugadores</span>
+                            <span><i class="fa-solid fa-clock mr-1"></i> 30 min</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Editorial Services -->
+    <section id="services" class="py-24 bg-stone-800 relative border-y border-stone-700">
+        <!-- Texture Overlay -->
+        <div class="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                
+                <div class="fade-in-section opacity-0">
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold text-white mb-6">De la Mente a <span class="text-brand-green">la Mesa</span></h2>
+                    <p class="text-stone-400 text-lg mb-8">
+                        No solo hacemos juegos, ayudamos a crearlos. YvY Ludica ofrece servicios integrales para autores independientes y empresas que buscan materializar sus ideas.
+                    </p>
+                    
+                    <div class="space-y-8">
+                        <div class="flex gap-5">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-stone-900 flex items-center justify-center border border-stone-700">
+                                <i class="fa-solid fa-pencil-ruler text-brand-green text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-xl mb-2">Diseño y Mecánicas</h4>
+                                <p class="text-stone-400 text-sm">Equilibramos las matemáticas detrás de la diversión. Testeo de reglas, balanceo de juego y redacción de manuales claros.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-5">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-stone-900 flex items-center justify-center border border-stone-700">
+                                <i class="fa-solid fa-palette text-brand-green text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-xl mb-2">Arte e Ilustración</h4>
+                                <p class="text-stone-400 text-sm">Diseño de tableros, cartas, tokens y cajas que destacan en la estantería. Estilos artísticos únicos.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-5">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-stone-900 flex items-center justify-center border border-stone-700">
+                                <i class="fa-solid fa-print text-brand-green text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-xl mb-2">Prototipado y Producción</h4>
+                                <p class="text-stone-400 text-sm">Desde el primer prototipo en cartón pluma hasta la gestión con fábricas para tiradas masivas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative fade-in-section opacity-0" style="transition-delay: 200ms;">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1606167668584-78701c57f13d?q=80&w=2070&auto=format&fit=crop" class="rounded-2xl shadow-2xl rotate-3 transform hover:rotate-0 transition-all duration-500">
+                        <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=2069&auto=format&fit=crop" class="rounded-2xl shadow-2xl -rotate-3 translate-y-12 transform hover:rotate-0 transition-all duration-500">
+                    </div>
+                    <!-- Decorative Element -->
+                    <div class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-brand-green/5 rounded-full blur-3xl"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Footer Section -->
+    <section id="contact" class="py-24 relative bg-stone-950">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="fade-in-section opacity-0">
+                <i class="fa-solid fa-dice text-6xl text-brand-green mb-6 animate-pulse"></i>
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-white mb-6">¿Tiramos los dados?</h2>
+                <p class="text-stone-400 mb-10 text-lg">
+                    Ya sea que quieras publicar tu juego con nosotros o necesites diseño para tu proyecto, estamos listos para jugar.
+                </p>
+                
+                <form onsubmit="event.preventDefault(); showMessage();" class="bg-stone-900 p-8 rounded-2xl border border-stone-800 shadow-2xl text-left">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-xs font-bold text-brand-green uppercase tracking-widest mb-2">Tu Nombre</label>
+                            <input type="text" class="w-full bg-stone-800 border border-stone-700 rounded px-4 py-3 text-white focus:outline-none focus:border-brand-green transition-colors" placeholder="Ej: Juan Pérez">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-brand-green uppercase tracking-widest mb-2">Tipo de Juego</label>
+                            <select class="w-full bg-stone-800 border border-stone-700 rounded px-4 py-3 text-stone-300 focus:outline-none focus:border-brand-green transition-colors">
+                                <option>Tengo un prototipo</option>
+                                <option>Busco ilustrador</option>
+                                <option>Quiero comprar juegos</option>
+                                <option>Otro</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-xs font-bold text-brand-green uppercase tracking-widest mb-2">Cuéntanos tu idea</label>
+                        <textarea rows="4" class="w-full bg-stone-800 border border-stone-700 rounded px-4 py-3 text-white focus:outline-none focus:border-brand-green transition-colors" placeholder="Breve descripción..."></textarea>
+                    </div>
+                    <button class="w-full bg-brand-green hover:bg-green-600 text-white font-bold py-4 rounded transition-all shadow-lg transform hover:translate-y-[-2px]">
+                        ENVIAR PROPUESTA
+                    </button>
+                </form>
+
+                <div class="mt-12 flex justify-center space-x-8 text-stone-500">
+                    <a href="#" class="hover:text-brand-green transition-colors"><i class="fa-brands fa-instagram text-2xl"></i></a>
+                    <a href="#" class="hover:text-brand-green transition-colors"><i class="fa-brands fa-facebook text-2xl"></i></a>
+                    <a href="#" class="hover:text-brand-green transition-colors"><i class="fa-brands fa-kickstarter text-2xl"></i></a>
+                    <a href="#" class="hover:text-brand-green transition-colors"><i class="fa-brands fa-discord text-2xl"></i></a>
+                </div>
+                <p class="mt-8 text-sm text-stone-600">&copy; 2025 YvY Ludica. Diseño de Juegos de Mesa.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Message Modal -->
+    <div id="successModal" class="fixed inset-0 z-[60] flex items-center justify-center px-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="bg-stone-800 border border-brand-green rounded-2xl p-8 max-w-md w-full relative z-10 text-center shadow-2xl shadow-green-900/20 transform scale-95 transition-transform duration-300" id="modalContent">
+            <div class="w-16 h-16 bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4 text-brand-green text-2xl border border-brand-green/30">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="text-2xl font-serif font-bold text-white mb-2">¡Turno Finalizado!</h3>
+            <p class="text-stone-300 mb-6">Hemos recibido tu mensaje. Analizaremos tu jugada y te responderemos lo antes posible.</p>
+            <button onclick="closeModal()" class="bg-brand-green hover:bg-green-600 text-white px-6 py-2 rounded font-bold transition-colors w-full">Aceptar</button>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Navbar Background on Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+
+        // Intersection Observer for Fade In Animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('opacity-0');
+                    entry.target.classList.add('opacity-100');
+                    entry.target.classList.add('animate-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-section').forEach((section) => {
+            observer.observe(section);
+        });
+
+        // Form Handling
+        function showMessage() {
+            const modal = document.getElementById('successModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('successModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            
+            document.querySelector('form').reset();
+        }
+    </script>
+</body>
+</html>
